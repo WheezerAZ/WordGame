@@ -1,29 +1,29 @@
 public class Person {
-    private string firstName;
-    private string lastName;
+    private String firstName;
+    private String lastName;
 
-    public string getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(string inputFirstName) {
+    public void setFirstName(String inputFirstName) {
         firstName = inputFirstName;
     }
 
-    public string getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(string inputLastName) {
+    public void setLastName(String inputLastName) {
         lastName = inputLastName;
     }
 
-    public void setName(string inputFirstName) {
+    public void setName(String inputFirstName) {
         firstName = inputFirstName;
-        lastName = ' ';
+        lastName = null;
     }
 
-    public void setName (string inputFirstName, string inputLastName) {
+    public void setName (String inputFirstName, String inputLastName) {
         firstName = inputFirstName;
         lastName = inputLastName;
     }
