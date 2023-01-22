@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class GamePlay {    
-    public static void main(String[] args) {
-        Person player = new Person();
+    private static Person player;    
+    public static void main(String[] args) {            
         String inputFirstName;
         String inputLastName;
         String lastNameCheck;
@@ -10,7 +10,8 @@ public class GamePlay {
         Numbers numbersValue = new Numbers();        
         boolean guessed;
         int guess;
-
+        player = new Person();
+        
         // Lets Prompt the user for their name
         System.out.println("What is your first name?");        
         inputFirstName = scnr.nextLine();
