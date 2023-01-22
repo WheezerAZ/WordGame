@@ -27,4 +27,8 @@ public class Person {
         firstName = inputFirstName;
         lastName = inputLastName;
     }
+
+    public String getCurrentUserName() {
+        return firstName + " " + lastName;
+    }
 }

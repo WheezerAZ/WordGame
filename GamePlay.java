@@ -1,12 +1,15 @@
 import java.util.Scanner;
 
-public class GamePlay {
+public class GamePlay {    
     public static void main(String[] args) {
-        private Person player = new Person();
+        Person player = new Person();
         String inputFirstName;
         String inputLastName;
         String lastNameCheck;
-        Scanner scnr = new Scanner(System.in);
+        Scanner scnr = new Scanner(System.in);        
+        Numbers numbersValue = new Numbers();        
+        boolean guessed;
+        int guess;
 
         // Lets Prompt the user for their name
         System.out.println("What is your first name?");        
@@ -14,16 +17,28 @@ public class GamePlay {
 
         // Check if they want enter their lastname?
         System.out.println("Do you want to enter your lastname(Y/N)?");
-        lastNameCheck = scnr.nextLine();
+        lastNameCheck = scnr.nextLine();   
 
-        if ( lastNameCheck.equals('Y') ) {
+        if ( lastNameCheck.equalsIgnoreCase("Y") ) {
             System.out.println("What is your last name?");        
             inputLastName = scnr.nextLine();
             player.setName(inputFirstName, inputLastName);
         } else {
             player.setName(inputFirstName);
-        }
+        }      
 
+        // initialize our number to be guessed
+        numbersValue.generateNumber();        
+      
+        // Setup the guessing loop until its guessed
+        guessed = false;
+        while ( ! guessed ) {
+            System.out.println(player.getCurrentUserName() + ", please guess a number from 0 to 100?");
+            guess = scnr.nextInt();
+            if( guess >= 0 && guess <= 100 ) {
+                guessed = numbersValue.compareNumber(guess);
+            }            
+        }
 
 
     }
