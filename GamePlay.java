@@ -1,16 +1,22 @@
 import java.util.Scanner;
 
 public class GamePlay {    
-    private static Person player;    
+    private static Players player;    
+    private static Hosts host;
     public static void main(String[] args) {            
         String inputFirstName;
         String inputLastName;
         String lastNameCheck;
-        Scanner scnr = new Scanner(System.in);        
-        Numbers numbersValue = new Numbers();        
+        String playAgain;
+        Turn gameTurn = new Turn();
+        Scanner scnr = new Scanner(System.in);                       
         boolean guessed;
+        boolean playingGame = true;
         int guess;
-        player = new Person();
+        //player = new Players();
+
+        // Lets setup the host and initialize their values
+        host = new Hosts("Monty","Hall");        
         
         // Lets Prompt the user for their name
         System.out.println("What is your first name?");        
@@ -18,29 +24,32 @@ public class GamePlay {
 
         // Check if they want enter their lastname?
         System.out.println("Do you want to enter your lastname(Y/N)?");
-        lastNameCheck = scnr.nextLine();   
+        lastNameCheck = scnr.nextLine();           
 
         if ( lastNameCheck.equalsIgnoreCase("Y") ) {
             System.out.println("What is your last name?");        
             inputLastName = scnr.nextLine();
-            player.setName(inputFirstName, inputLastName);
+            player = new Players(inputFirstName, inputLastName);
         } else {
-            player.setName(inputFirstName);
+            player = new Players(inputFirstName);
         }      
 
-        // initialize our number to be guessed
-        numbersValue.generateNumber();        
-      
-        // Setup the guessing loop until its guessed
-        guessed = false;
-        while ( ! guessed ) {
-            System.out.println(player.getCurrentUserName() + ", please guess a number from 0 to 100?");
-            guess = scnr.nextInt();
-            if( guess >= 0 && guess <= 100 ) {
-                guessed = numbersValue.compareNumber(guess);
-            }            
+        while ( playingGame ) {
+            host.randomizeNum();
+
+            // Setup the guessing loop until its guessed
+            guessed = false;
+            while ( ! guessed ) {
+                guessed=gameTurn.takeTurn(player,host);
+            }
+
+            // See if the user wants to play again
+            System.out.println("Do you want to play again(Y/N)?");
+            playAgain = scnr.nextLine();
+            if ( playAgain.equalsIgnoreCase("N") ) {
+                playingGame = false;
+            }
         }
-
-
+        
     }
 }
