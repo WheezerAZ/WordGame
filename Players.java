@@ -2,7 +2,7 @@ public class Players extends Person {
     private double currentMoney;
 
     public Players() {
-        currentMoney = 1000.00;
+        currentMoney = 1000;
     }
 
     public Players(String inputFirstName) {

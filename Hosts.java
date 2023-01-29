@@ -1,6 +1,6 @@
 public class Hosts extends Person {
-    private Numbers randomNum;
-
+    private Numbers randomNum = new Numbers();
+ 
     public Hosts() {        
     }
 
@@ -14,7 +14,7 @@ public class Hosts extends Person {
         this.setLastName(inputLastName);
     }
 
-    public int getRandomNum() {
+    public int getRandomNum() {        
         return randomNum.getRandomNum();
     }
 

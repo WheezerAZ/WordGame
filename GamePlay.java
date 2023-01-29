@@ -19,32 +19,34 @@ public class GamePlay {
         host = new Hosts("Monty","Hall");        
         
         // Lets Prompt the user for their name
-        System.out.println("What is your first name?");        
+        System.out.print("What is your first name? ");        
         inputFirstName = scnr.nextLine();
 
         // Check if they want enter their lastname?
-        System.out.println("Do you want to enter your lastname(Y/N)?");
+        System.out.print("Do you want to enter your lastname(Y/N)? ");
         lastNameCheck = scnr.nextLine();           
 
         if ( lastNameCheck.equalsIgnoreCase("Y") ) {
-            System.out.println("What is your last name?");        
+            System.out.print("What is your last name? ");        
             inputLastName = scnr.nextLine();
             player = new Players(inputFirstName, inputLastName);
         } else {
             player = new Players(inputFirstName);
         }      
 
+        // This is the game loop. It determines if user is in game or not
         while ( playingGame ) {
-            host.randomizeNum();
+            // At the start of this loop we set the randomized number to guess
+            host.randomizeNum();            
 
             // Setup the guessing loop until its guessed
             guessed = false;
-            while ( ! guessed ) {
-                guessed=gameTurn.takeTurn(player,host);
+            while ( ! guessed ) {                
+                guessed=gameTurn.takeTurn(player,host);                
             }
 
             // See if the user wants to play again
-            System.out.println("Do you want to play again(Y/N)?");
+            System.out.print("Do you want to play again(Y/N)? ");
             playAgain = scnr.nextLine();
             if ( playAgain.equalsIgnoreCase("N") ) {
                 playingGame = false;

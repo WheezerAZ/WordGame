@@ -1,7 +1,7 @@
 public class Person {
     private String firstName;
     private String lastName;
-
+    
     public Person() {
         firstName = null;
         lastName = null;        
@@ -43,7 +43,12 @@ public class Person {
         lastName = inputLastName;
     }
 
+    // This function will only output firstname if the lastname is null
     public String getCurrentUserName() {
-        return firstName + " " + lastName;
+        String outputName = firstName;
+        if ( lastName != null ) {
+            outputName = outputName + " " + lastName;
+        }
+        return outputName;
     }
 }

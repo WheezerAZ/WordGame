@@ -25,17 +25,20 @@ public class Turn {
         correctGuess = inputAmount;
     }
 
+    // This function controls the turn functionality    
     public boolean takeTurn (Players currentPlayer, Hosts currentHost) {
         Scanner scnr = new Scanner(System.in);
-        int guess;
+        int guess;        
 
         System.out.print(currentHost.getCurrentUserName() + " is asking ");
-        System.out.println(currentPlayer.getCurrentUserName() + " , to guess a number between 0 and 100? ");
+        System.out.print(currentPlayer.getCurrentUserName() + ", to guess a number between 0 and 100? ");
 
-        guess = scnr.nextInt();
-        scnr.close();
+        guess = scnr.nextInt();            
 
+        // First we only process valid guesses. Invalid guesses are reported as wrong
+        // and user can go again without penalty
         if( guess >= 0 && guess <= 100 ) {
+            // If the user guesses current number then they win
             if ( guess == currentHost.getRandomNum() ) {
                 currentPlayer.setCurrentMoney(currentPlayer.getCurrentMoney() + correctGuess);
                 System.out.println("Congratulations, you are a winner!");
