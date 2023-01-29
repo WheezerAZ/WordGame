@@ -17,7 +17,6 @@ public class Person {
         lastName = inputLastName;
     }
 
-
     public String getFirstName() {
         return firstName;
     }
