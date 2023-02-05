@@ -3,44 +3,47 @@ import java.util.Scanner;
 public class GamePlay {    
     private static Players player;    
     private static Hosts host;
+
     public static void main(String[] args) {            
-        String inputFirstName;
-        String inputLastName;
-        String lastNameCheck;
+        Players[] currentPlayers = new Players[3];        
+        boolean[] playerGuesses = new boolean[3];
         String playAgain;
         Turn gameTurn = new Turn();
         Scanner scnr = new Scanner(System.in);                       
         boolean guessed;
         boolean playingGame = true;                
+        int gameRound;
 
         // Lets setup the host and initialize their values
         host = new Hosts("Monty","Hall");        
+                
+        // Go through each player and get their name
+        for (var i = 0; i < currentPlayers.length; i++ ) {
+            currentPlayers[i] = new Players();
+            currentPlayers[i].queryPlayerName(i+1);
+        } 
         
-        // Lets Prompt the user for their name
-        System.out.print("What is your first name? ");        
-        inputFirstName = scnr.nextLine();
-
-        // Check if they want enter their lastname?
-        System.out.print("Do you want to enter your lastname(Y/N)? ");
-        lastNameCheck = scnr.nextLine();           
-
-        if ( lastNameCheck.equalsIgnoreCase("Y") ) {
-            System.out.print("What is your last name? ");        
-            inputLastName = scnr.nextLine();
-            player = new Players(inputFirstName, inputLastName);
-        } else {
-            player = new Players(inputFirstName);
-        }      
-
         // This is the game loop. It determines if user is in game or not
         while ( playingGame ) {
             // At the start of this loop we set the randomized number to guess
             host.randomizeNum();            
 
-            // Setup the guessing loop until its guessed
+            // We have a loop based on correct guess or not
+            // Inner loop will in turn have each player take a guess
+            // If any of the players guess the value then guessing loop
+            // will exit
             guessed = false;
+            gameRound = 1;
             while ( ! guessed ) {                
-                guessed=gameTurn.takeTurn(player,host);                
+                System.out.println();
+                System.out.println(">>>>>>>>>Round " + gameRound + "<<<<<<<<<<");
+                gameRound++;
+                for (var i = 0; i < currentPlayers.length; i++ ) {
+                    playerGuesses[i] = gameTurn.takeTurn(currentPlayers[i], host);
+                    if ( playerGuesses[i] == true ) {
+                        guessed = true; 
+                    }
+                }                                
             }
 
             // See if the user wants to play again
@@ -50,6 +53,7 @@ public class GamePlay {
                 playingGame = false;
             }
         }
+        
         
     }
 }

@@ -14,7 +14,7 @@ public class Hosts extends Person {
         this.setLastName(inputLastName);
     }
 
-    public int getRandomNum() {        
+    public int getRandomNumValue() {        
         return randomNum.getRandomNum();
     }
 

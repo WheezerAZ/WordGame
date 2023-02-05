@@ -1,0 +1,43 @@
+import java.util.Random;
+
+public class Physical implements Award {
+    private String[] prizeList = new String[5];
+
+    public Physical() {
+        this.prizeList[0] = "a Potted Plant";
+        this.prizeList[1] = "Half a Chocolate Bar";
+        this.prizeList[2] = "a cat that quacks";
+        this.prizeList[3] = "a CD Player that runs backwards";
+        this.prizeList[4] = "a Parrot that mimes";                          
+    }
+
+    public void setPrize ( String inputPrize, int prizeNumber ) {
+        prizeList[prizeNumber]=inputPrize;
+    }
+
+    public String getPrize ( int prizeNumber ) {
+        return prizeList[prizeNumber];
+    }
+
+    public int displayWinnings ( Players inputPlayer, boolean inputGuessCorrect ) {
+
+        if ( inputGuessCorrect ) {
+            System.out.print("Congratulations, " + inputPlayer.getPlayerName());            
+            System.out.println(" you are a winner!");
+            System.out.println("You've won " + getPrize(getRandomPrize()) + "!!!!");
+        } else {
+            System.out.print("I'm sorry " + inputPlayer.getPlayerName());            
+            System.out.println(", your guess was incorrect!");
+            System.out.println("You would have won " + getPrize(getRandomPrize()) + "!!!!");
+        }
+
+        return 0;
+    }
+
+    public int getRandomPrize() {
+        int numberOfPrizes = this.prizeList.length;
+        Random generateRandom = new Random();
+
+        return generateRandom.nextInt(numberOfPrizes);
+    }
+}
