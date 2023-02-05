@@ -11,9 +11,7 @@ public class GamePlay {
         Turn gameTurn = new Turn();
         Scanner scnr = new Scanner(System.in);                       
         boolean guessed;
-        boolean playingGame = true;
-        int guess;
-        //player = new Players();
+        boolean playingGame = true;                
 
         // Lets setup the host and initialize their values
         host = new Hosts("Monty","Hall");        
