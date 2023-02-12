@@ -1,5 +1,5 @@
-public class Hosts extends Person {
-    private Numbers randomNum = new Numbers();
+public class Hosts extends Person {     
+    private Phrases gamePhrase = new Phrases();  
  
     public Hosts() {        
     }
@@ -12,18 +12,26 @@ public class Hosts extends Person {
     public Hosts(String inputFirstName, String inputLastName) {
         this.setFirstName(inputFirstName);        
         this.setLastName(inputLastName);
+    }    
+
+    public String getGamingPhrase() {        
+        return gamePhrase.getGamePhrase();
     }
 
-    public int getRandomNumValue() {        
-        return randomNum.getRandomNum();
+    public void setGamePhrase(String inputPhrase) {
+        gamePhrase.setGamePhrase(inputPhrase);
     }
 
-    public void setRandomNum(int inputNum) {
-        randomNum.setRandomNum(inputNum);
+    public String getPlayingPhrase() {        
+        return gamePhrase.getPlayingPhrase();
     }
 
-    public void randomizeNum() {        
-        randomNum.generateNumber();        
+    public void setPlayingPhrase(String inputPhrase) {
+        gamePhrase.setPlayingPhrase(inputPhrase);
+    }
+
+    public boolean findLetters(String inputGuess) throws MultipleLettersException, Exception {
+        return gamePhrase.findLetters(inputGuess);
     }
     
 }

@@ -13,9 +13,10 @@ public class GamePlay {
         boolean guessed;
         boolean playingGame = true;                
         int gameRound;
+        String phraseToGuess;
 
         // Lets setup the host and initialize their values
-        host = new Hosts("Monty","Hall");        
+        host = new Hosts("Monty","Hall");                        
                 
         // Go through each player and get their name
         for (var i = 0; i < currentPlayers.length; i++ ) {
@@ -25,23 +26,28 @@ public class GamePlay {
         
         // This is the game loop. It determines if user is in game or not
         while ( playingGame ) {
-            // At the start of this loop we set the randomized number to guess
-            host.randomizeNum();            
+            // Lets get our phrase to guess
+            System.out.println();
+            System.out.print(host.getCurrentUserName() + ", enter phrase to guess: ");
+            phraseToGuess = scnr.nextLine();
+            host.setGamePhrase(phraseToGuess);
+
 
             // We have a loop based on correct guess or not
-            // Inner loop will in turn have each player take a guess
-            // If any of the players guess the value then guessing loop
-            // will exit
+            // Inner loop will in turn have each player take a guess          
+            // First player to guess will exit the loop
             guessed = false;
             gameRound = 1;
             while ( ! guessed ) {                
                 System.out.println();
-                System.out.println(">>>>>>>>>Round " + gameRound + "<<<<<<<<<<");
+                System.out.println(">>>>>>>>>Round " + gameRound + "<<<<<<<<<<");                
                 gameRound++;
                 for (var i = 0; i < currentPlayers.length; i++ ) {
+                    System.out.println("Current Puzzle: " + host.getPlayingPhrase());
                     playerGuesses[i] = gameTurn.takeTurn(currentPlayers[i], host);
                     if ( playerGuesses[i] == true ) {
                         guessed = true; 
+                        break;
                     }
                 }                                
             }
