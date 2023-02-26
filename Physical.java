@@ -19,6 +19,18 @@ public class Physical implements Award {
         return prizeList[prizeNumber];
     }
 
+    public String returnWinningsValue ( Players inputPlayer, boolean inputGuessCorrect ) {
+        String prizeName;        
+
+        if ( inputGuessCorrect ) {
+            prizeName = getPrize(getRandomPrize());            
+        } else {
+            prizeName = getPrize(getRandomPrize());
+        }
+
+        return prizeName;
+    }
+
     public int displayWinnings ( Players inputPlayer, boolean inputGuessCorrect ) {
 
         if ( inputGuessCorrect ) {

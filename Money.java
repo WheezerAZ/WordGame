@@ -23,6 +23,18 @@ public class Money implements Award {
         correctGuess = inputAmount;        
     }
 
+    public int returnWinningsValue(Players inputPlayer, boolean inputGuessCorrect ) {
+        int awardAmount = 0;
+
+        if ( inputGuessCorrect ) {            
+            awardAmount = this.correctGuess;
+        } else {            
+            awardAmount = this.incorrectGuess * -1;        
+        }
+
+        return awardAmount;
+    }
+
     public int displayWinnings(Players inputPlayer, boolean inputGuessCorrect ) {
         int awardAmount = 0;
 
