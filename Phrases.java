@@ -67,4 +67,32 @@ public class Phrases {
 
         return lettersGuessed;
     }
+
+    // This is run prior to updating playing phrase to let us know if the user guessed a new letter
+    public String checkLetterGuess(String inputLetter) throws MultipleLettersException, Exception {      
+        String letterGuessed = new String();
+        
+        // First lets verify we have 1 letter
+        if ( inputLetter.length() > 1 ) {
+            throw(new MultipleLettersException());
+        } else if ( ! inputLetter.matches("[a-zA-Z]") ) {
+            throw(new Exception("Only letters A through Z accepted"));
+        } else {
+            // Lets loop through the gamePhrase and compare letters.                         
+            // We'll force our checks to be upperCase so we are not making
+            // a case sensitive check.                        
+
+            letterGuessed = "no";
+            for(int i = 0; i < gamePhrase.length(); i++ ) {                
+                if ( playingPhrase.toUpperCase().charAt(i) == inputLetter.toUpperCase().charAt(0) ) {
+                    letterGuessed = "repeat";
+                } else if ( gamePhrase.toUpperCase().charAt(i) == inputLetter.toUpperCase().charAt(0) ) {
+                    letterGuessed = "yes";
+                }
+            }            
+        }
+
+        return letterGuessed;
+    }
+
 }

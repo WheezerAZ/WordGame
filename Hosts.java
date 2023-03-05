@@ -34,6 +34,10 @@ public class Hosts extends Person {
         return gamePhrase.findLetters(inputGuess);
     }
 
+    public String checkLetterGuess(String inputGuess) throws MultipleLettersException, Exception {
+        return gamePhrase.checkLetterGuess(inputGuess);
+    }
+
     public String getHostName() {
         String fullname;
         
